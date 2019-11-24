@@ -138,6 +138,14 @@ public class PlayerControl : MonoBehaviour
         transform.localScale = characterScale;
 
         RunAnim();
+
+        if(Input.GetAxis("Horizontal") == 0 || move == 0)
+        {
+            if(Input.GetAxis("Horizontal") != 0)
+                rb.velocity = new Vector2(dir.x * speed * Time.deltaTime, rb.velocity.y);
+            else
+                rb.velocity = new Vector2(move * speed * Time.deltaTime, rb.velocity.y);
+        }
     }
     
 
@@ -153,6 +161,7 @@ public class PlayerControl : MonoBehaviour
             anim.SetBool("Run",false);
         }
     }
+
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
